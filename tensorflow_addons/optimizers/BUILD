@@ -6,6 +6,7 @@ py_library(
     name = "optimizers",
     srcs = [
         "__init__.py",
+        "average_wrapper.py",
         "conditional_gradient.py",
         "cyclical_learning_rate.py",
         "lamb.py",
@@ -14,9 +15,10 @@ py_library(
         "moving_average.py",
         "rectified_adam.py",
         "stochastic_weight_averaging.py",
+        "utils.py",
         "weight_decay_optimizers.py",
+        "yogi.py",
     ],
-    srcs_version = "PY2AND3",
     deps = [
         "//tensorflow_addons/utils",
     ],
@@ -29,7 +31,18 @@ py_test(
         "lamb_test.py",
     ],
     main = "lamb_test.py",
-    srcs_version = "PY2AND3",
+    deps = [
+        ":optimizers",
+    ],
+)
+
+py_test(
+    name = "yogi_test",
+    size = "small",
+    srcs = [
+        "yogi_test.py",
+    ],
+    main = "yogi_test.py",
     deps = [
         ":optimizers",
     ],
@@ -42,7 +55,6 @@ py_test(
         "conditional_gradient_test.py",
     ],
     main = "conditional_gradient_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -55,7 +67,6 @@ py_test(
         "stochastic_weight_averaging_test.py",
     ],
     main = "stochastic_weight_averaging_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -68,7 +79,6 @@ py_test(
         "lazy_adam_test.py",
     ],
     main = "lazy_adam_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -81,7 +91,6 @@ py_test(
         "lookahead_test.py",
     ],
     main = "lookahead_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -94,7 +103,6 @@ py_test(
         "moving_average_test.py",
     ],
     main = "moving_average_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -107,7 +115,6 @@ py_test(
         "rectified_adam_test.py",
     ],
     main = "rectified_adam_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -120,7 +127,6 @@ py_test(
         "weight_decay_optimizers_test.py",
     ],
     main = "weight_decay_optimizers_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
@@ -133,7 +139,6 @@ py_test(
         "cyclical_learning_rate_test.py",
     ],
     main = "cyclical_learning_rate_test.py",
-    srcs_version = "PY2AND3",
     deps = [
         ":optimizers",
     ],
